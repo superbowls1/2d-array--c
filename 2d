@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <stdbool.h>
+//joey Slepski lab 2d Arrays 9/25
+
+int max(int rows, int cols, int array[rows][cols]){
+    int maxv=array[0][0];//max value is the first value
+    
+    //for loop to find max value 
+    for(int i=0; i <rows; i++){
+        for(int j=0; j<cols; j++){
+            if(array[i][j] > maxv){
+                maxv=array[i][j];
+            }
+        }
+    }
+    return maxv;
+}//finding the sum of row
+int rowsum(int row_index, int rows, int cols, int array[rows][cols]){
+    int sum= 0;
+    for(int j=0; j<cols; j++){
+    sum+=array[row_index][j];
+}
+return sum;
+}//finding the sum of the col
+int colsum(int colindex, int rows, int cols, int array[rows][cols]){
+    int sum1=0;
+    for(int j=0; j<rows; j++){
+        sum1 += array[j][colindex];
+    }
+    return sum1;
+}//seeing if its a square
+bool square(int rows, int cols, int array[rows][cols]){
+    return rows==cols;
+}
+void displayoutput(int rows, int cols, int array[rows][cols]){
+    for(int i=0; i<rows; i++){
+        printf("[");
+        for(int j=0; j<cols; j++){
+        
+            printf("%d", array[i][j]);
+            if(j<cols-1){
+                printf(",");
+            }
+        
+        }
+        printf("]\n");
+    }
+    
+    
+}
+
+int main()
+{
+    int rows= 0;
+    int cols= 0;
+    printf ("Enter the number of rows: ");
+    scanf("%d", &rows);
+    printf("Enter the number of columns: ");
+    scanf("%d", &cols);
+    //having them put in the numbers
+    int array[rows][cols];
+    printf("Enter your values for rows and columns: \n");
+    for(int i=0; i<rows; i++){
+        for(int j=0; j< cols; j++){
+            printf("Enter[%d][%d] ", i, j);
+            scanf("%d", &array[i][j]);
+        }//values for row
+    }
+    printf("Array: \n ");
+    displayoutput(rows,cols, array);
+    int row_index=0;
+    int colindex=0;
+    printf(" Max value %d\n", max(rows, cols, array) );
+    printf("Enter row for sum:\n");
+    scanf("%d", &row_index);
+    printf("Sum %d, %d\n", row_index, rowsum(row_index, rows, cols, array));
+    
+    printf("enter row of column:\n ");
+    scanf("%d", &colindex);
+    printf("Sum of column %d: %d\n", colindex, colsum(colindex, rows, cols, array));
+    
+    if(square(rows, cols, array)){
+        printf("The array is a square:\n ");
+    } else{
+        printf("Array is not: ");
+    }
+    
+
+    return 0;
+}
+
